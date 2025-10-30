@@ -5,7 +5,7 @@
       "name": "Run bastau_3d",
       "type": "cppvsdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/build/Debug/bastau_3d.exe",
+      "program": "${workspaceFolder}/build/Debug/Bastau3DLiveCells.exe",
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "build-bastau",
       "console": "integratedTerminal",

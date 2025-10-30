@@ -1,6 +1,6 @@
 ^C:\USERS\ZHANI\CLIONPROJECTS\BASTAU-3D\BUILD\CMAKEFILES\0CC2CC95D468DF6B91AB8A8250F50B8B\GENERATE.STAMP.RULE
 setlocal
-"C:\Program Files\Microsoft Visual Studio\18\Insiders\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/zhani/CLionProjects/bastau-3d -BC:/Users/zhani/CLionProjects/bastau-3d/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/zhani/CLionProjects/bastau-3d/build/bastau_3d.sln
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/zhani/CLionProjects/bastau-3d -BC:/Users/zhani/CLionProjects/bastau-3d/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/zhani/CLionProjects/bastau-3d/build/Bastau3DLiveCells.sln
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

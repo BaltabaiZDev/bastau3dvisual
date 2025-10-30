@@ -1,0 +1,8 @@
+C:\Users\zhani\CLionProjects\bastau-3d\src\main.cpp;C:\Users\zhani\CLionProjects\bastau-3d\build\Bastau3DLiveCells.dir\Debug\main.obj
+C:\Users\zhani\CLionProjects\bastau-3d\src\core\node.cpp;C:\Users\zhani\CLionProjects\bastau-3d\build\Bastau3DLiveCells.dir\Debug\node.obj
+C:\Users\zhani\CLionProjects\bastau-3d\src\core\edge.cpp;C:\Users\zhani\CLionProjects\bastau-3d\build\Bastau3DLiveCells.dir\Debug\edge.obj
+C:\Users\zhani\CLionProjects\bastau-3d\src\core\graph.cpp;C:\Users\zhani\CLionProjects\bastau-3d\build\Bastau3DLiveCells.dir\Debug\graph.obj
+C:\Users\zhani\CLionProjects\bastau-3d\src\renderer\node_renderer.cpp;C:\Users\zhani\CLionProjects\bastau-3d\build\Bastau3DLiveCells.dir\Debug\node_renderer.obj
+C:\Users\zhani\CLionProjects\bastau-3d\src\renderer\graph_renderer.cpp;C:\Users\zhani\CLionProjects\bastau-3d\build\Bastau3DLiveCells.dir\Debug\graph_renderer.obj
+C:\Users\zhani\CLionProjects\bastau-3d\src\utils\shader_loader.cpp;C:\Users\zhani\CLionProjects\bastau-3d\build\Bastau3DLiveCells.dir\Debug\shader_loader.obj
+C:\Users\zhani\CLionProjects\bastau-3d\src\utils\camera.cpp;C:\Users\zhani\CLionProjects\bastau-3d\build\Bastau3DLiveCells.dir\Debug\camera.obj
