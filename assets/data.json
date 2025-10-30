@@ -1,0 +1,12 @@
+{
+  "nodes": [
+    { "id": "HR-01", "label": "HR Dept", "group": "HR", "size": 1.0, "load": 0.35 },
+    { "id": "IT-32", "label": "IT Ops", "group": "IT", "size": 1.6, "load": 0.82 },
+    { "id": "FIN-02", "label": "Finance", "group": "FIN", "size": 1.2, "load": 0.55 }
+  ],
+  "edges": [
+    { "from": "HR-01", "to": "IT-32", "weight": 0.7 },
+    { "from": "FIN-02", "to": "IT-32", "weight": 0.5 }
+  ],
+  "timestamp": 1730265600
+}

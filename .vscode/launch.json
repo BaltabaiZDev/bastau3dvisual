@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run bastau_3d",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Debug/bastau_3d.exe",
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "build-bastau",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    }
+  ]
+}

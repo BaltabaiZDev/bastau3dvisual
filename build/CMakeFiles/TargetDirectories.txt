@@ -1,0 +1,3 @@
+C:/Users/zhani/CLionProjects/bastau-3d/build/CMakeFiles/bastau_3d.dir
+C:/Users/zhani/CLionProjects/bastau-3d/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/zhani/CLionProjects/bastau-3d/build/CMakeFiles/ZERO_CHECK.dir
