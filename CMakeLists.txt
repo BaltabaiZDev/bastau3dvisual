@@ -1,34 +1,58 @@
-cmake_minimum_required(VERSION 3.21)
-project(Bastau3DLiveCells CXX)
+cmake_minimum_required(VERSION 3.20)
+project(BastauEduGraph)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Vcpkg қолдансаңыз, VS Code-тан генерацияда -DCMAKE_TOOLCHAIN_FILE=... берілген болсын
-# Пакеттер: glfw3, glad, glm
+# ---- Dependencies ----
 find_package(glfw3 CONFIG REQUIRED)
 find_package(glad CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
+find_package(OpenGL REQUIRED)
 
+if (MSVC)
+    add_definitions(-DNOMINMAX)
+endif()
+
+# ---- ImGui directory ----
+set(IMGUI_DIR "${CMAKE_SOURCE_DIR}/src/vendor/imgui")
+
+# ---- Executable ----
 add_executable(${PROJECT_NAME}
-    src/main.cpp
-    src/core/node.cpp
-    src/core/edge.cpp
-    src/core/graph.cpp
-    src/renderer/node_renderer.cpp
-    src/renderer/graph_renderer.cpp
-    src/utils/shader_loader.cpp
-    src/utils/camera.cpp
+        src/main.cpp
+        src/app.cpp
+        src/core/graph.cpp
+        src/renderer/graph_renderer.cpp
+        src/modules/control/controller_panel.h
+        src/modules/control/worker_panel.h
+        src/modules/control/message_bus.h
+        # ❗ message_bus.cpp енді қажет емес, CMake-тен алып тастадық
+        ${IMGUI_DIR}/imgui.cpp
+        ${IMGUI_DIR}/imgui_draw.cpp
+        ${IMGUI_DIR}/imgui_demo.cpp
+        ${IMGUI_DIR}/imgui_tables.cpp
+        ${IMGUI_DIR}/imgui_widgets.cpp
+        ${IMGUI_DIR}/backends/imgui_impl_glfw.cpp
+        ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
 )
 
+# ---- Include directories ----
 target_include_directories(${PROJECT_NAME} PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/src
+        src
+        src/vendor
+        ${IMGUI_DIR}
+        ${IMGUI_DIR}/backends
+        C:/vcpkg/installed/x64-windows/include
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE glfw glad::glad glm::glm)
+# ---- Defines for ImGui backend with GLAD ----
+target_compile_definitions(${PROJECT_NAME} PRIVATE IMGUI_IMPL_OPENGL_LOADER_GLAD)
 
-# Шейдерлерді орындалатын файл қасына көшіреміз
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-    ${CMAKE_SOURCE_DIR}/assets $<TARGET_FILE_DIR:${PROJECT_NAME}>/assets
+# ---- Link libraries ----
+target_link_libraries(${PROJECT_NAME}
+        PRIVATE
+        glfw
+        glad::glad
+        glm::glm
+        OpenGL::GL
 )

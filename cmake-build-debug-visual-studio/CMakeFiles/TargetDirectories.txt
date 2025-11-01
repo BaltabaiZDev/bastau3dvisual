@@ -1,0 +1,3 @@
+C:/Users/zhani/CLionProjects/Bastau3D/cmake-build-debug-visual-studio/CMakeFiles/BastauEduGraph.dir
+C:/Users/zhani/CLionProjects/Bastau3D/cmake-build-debug-visual-studio/CMakeFiles/ALL_BUILD.dir
+C:/Users/zhani/CLionProjects/Bastau3D/cmake-build-debug-visual-studio/CMakeFiles/ZERO_CHECK.dir

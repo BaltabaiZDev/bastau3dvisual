@@ -1,0 +1,50 @@
+# CMake generation dependency list for this directory.
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCInformation.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeDependentOption.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeFindDependencyMacro.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeRCInformation.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckIncludeFile.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/CheckLibraryExists.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/MSVC-C.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/MSVC-CXX.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Compiler/MSVC.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/FindOpenGL.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/FindPackageMessage.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/FindThreads.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-Initialize.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-MSVC-C.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-MSVC-CXX.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows-MSVC.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/Windows.cmake
+C:/Program Files/JetBrains/CLion 2024.2.1/bin/cmake/win/x64/share/cmake-3.29/Modules/Platform/WindowsPaths.cmake
+C:/Users/zhani/CLionProjects/Bastau3D/CMakeLists.txt
+C:/Users/zhani/CLionProjects/Bastau3D/cmake-build-debug-visual-studio/CMakeFiles/3.29.6/CMakeCCompiler.cmake
+C:/Users/zhani/CLionProjects/Bastau3D/cmake-build-debug-visual-studio/CMakeFiles/3.29.6/CMakeCXXCompiler.cmake
+C:/Users/zhani/CLionProjects/Bastau3D/cmake-build-debug-visual-studio/CMakeFiles/3.29.6/CMakeRCCompiler.cmake
+C:/Users/zhani/CLionProjects/Bastau3D/cmake-build-debug-visual-studio/CMakeFiles/3.29.6/CMakeSystem.cmake
+C:/vcpkg/installed/x64-windows/share/glad/gladConfig.cmake
+C:/vcpkg/installed/x64-windows/share/glad/gladConfigVersion.cmake
+C:/vcpkg/installed/x64-windows/share/glad/gladTargets-debug.cmake
+C:/vcpkg/installed/x64-windows/share/glad/gladTargets-release.cmake
+C:/vcpkg/installed/x64-windows/share/glad/gladTargets.cmake
+C:/vcpkg/installed/x64-windows/share/glfw3/glfw3Config.cmake
+C:/vcpkg/installed/x64-windows/share/glfw3/glfw3ConfigVersion.cmake
+C:/vcpkg/installed/x64-windows/share/glfw3/glfw3Targets-debug.cmake
+C:/vcpkg/installed/x64-windows/share/glfw3/glfw3Targets-release.cmake
+C:/vcpkg/installed/x64-windows/share/glfw3/glfw3Targets.cmake
+C:/vcpkg/installed/x64-windows/share/glm/glmConfig-debug.cmake
+C:/vcpkg/installed/x64-windows/share/glm/glmConfig-release.cmake
+C:/vcpkg/installed/x64-windows/share/glm/glmConfig.cmake
+C:/vcpkg/installed/x64-windows/share/glm/glmConfigVersion.cmake
+C:/vcpkg/scripts/buildsystems/vcpkg.cmake

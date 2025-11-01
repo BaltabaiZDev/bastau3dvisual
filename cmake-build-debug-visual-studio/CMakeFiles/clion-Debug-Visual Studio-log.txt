@@ -1,0 +1,18 @@
+"C:\Program Files\JetBrains\CLion 2024.2.1\bin\cmake\win\x64\bin\cmake.exe" -G "Visual Studio 17 2022" -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows -S C:\Users\zhani\CLionProjects\Bastau3D -B C:\Users\zhani\CLionProjects\Bastau3D\cmake-build-debug-visual-studio
+-- Selecting Windows SDK version 10.0.26100.0 to target Windows 10.0.26200.
+-- Configuring done (0.0s)
+CMake Error at C:/vcpkg/scripts/buildsystems/vcpkg.cmake:608 (_add_executable):
+  Cannot find source file:
+
+    modules/control/message_bus.cpp
+Call Stack (most recent call first):
+  CMakeLists.txt:20 (add_executable)
+
+
+CMake Error at C:/vcpkg/scripts/buildsystems/vcpkg.cmake:608 (_add_executable):
+  No SOURCES given to target: BastauEduGraph
+Call Stack (most recent call first):
+  CMakeLists.txt:20 (add_executable)
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.

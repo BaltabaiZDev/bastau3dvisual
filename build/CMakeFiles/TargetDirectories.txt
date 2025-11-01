@@ -1,3 +1,0 @@
-C:/Users/zhani/CLionProjects/bastau-3d/build/CMakeFiles/Bastau3DLiveCells.dir
-C:/Users/zhani/CLionProjects/bastau-3d/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/zhani/CLionProjects/bastau-3d/build/CMakeFiles/ZERO_CHECK.dir
