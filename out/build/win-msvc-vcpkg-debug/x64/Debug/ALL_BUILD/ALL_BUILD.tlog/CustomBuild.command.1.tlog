@@ -1,0 +1,10 @@
+^C:\USERS\ZHANI\CLIONPROJECTS\BASTAU3D\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/zhani/CLionProjects/Bastau3D -BC:/Users/zhani/CLionProjects/Bastau3D/out/build/win-msvc-vcpkg-debug --check-stamp-file C:/Users/zhani/CLionProjects/Bastau3D/out/build/win-msvc-vcpkg-debug/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

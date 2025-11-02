@@ -1,0 +1,10 @@
+^C:\USERS\ZHANI\CLIONPROJECTS\BASTAU3D\OUT\BUILD\WIN-MSVC-VCPKG-DEBUG\CMAKEFILES\F8FA06792964B98424BB6171F7506B10\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/zhani/CLionProjects/Bastau3D -BC:/Users/zhani/CLionProjects/Bastau3D/out/build/win-msvc-vcpkg-debug --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/zhani/CLionProjects/Bastau3D/out/build/win-msvc-vcpkg-debug/BastauEduGraph.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

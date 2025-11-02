@@ -121,7 +121,8 @@ void GraphRenderer::render(const Graph& graph, const Camera3D& cam, int w, int h
         glLineWidth(1.5f);
         glColor4f(1,1,1,0.35f);
         glBegin(GL_LINES);
-        for (const auto& e : const_cast<Graph&>(graph).getEdges()) {
+        for (const auto& e : graph.getEdges()) {
+
             const auto& A = graph.getNodes()[e.from];
             const auto& C = graph.getNodes()[e.to];
             glVertex3f(A.pos.x, A.pos.y, A.pos.z);

@@ -5,39 +5,33 @@
 #include <unordered_map>
 
 class Graph {
-    // --- Storage ---
-    std::vector<Node> nodes;                    // contiguous for renderer
-    std::unordered_map<int, size_t> idIndex;    // id -> index in nodes
-    std::vector<Edge> edges;                    // ✅ edges контейнері
+    std::vector<Node> nodes;
+    std::vector<Edge> edges;
+    std::unordered_map<int, size_t> idIndex;
     int nextId = 0;
 
-    // Жаңа түйінге еркін basePos беру
-    Node makeRandomNode();
+    Node makeRandomNode();              // ✅ private member
 
 public:
     explicit Graph(int initialCount = 0);
 
-    // Басқару API
-    int  addTask();                 // жаңа Node (Pending күйімен)
-    bool removeTask(int id);        // id бойынша жою
+    // Басқару
+    int  addTask();
+    bool removeTask(int id);
 
-    // Көмекші
-    bool has(int id) const { return idIndex.count(id) != 0; }
-    std::vector<int> ids() const;   // барлық қолданыстағы ID
-
-    // Күй өзгерту
+    // Күй
     void setNodeState(int id, NodeState state);
 
-    // Кадр жаңарту
-    void update(float dt);
+    // Кадр сайын жаңарту
+    void update(float dt);              // ✅ дәл осы сигнатура
 
-    // --- Accessors ---
+    // Көмекші/рендерге
+    const std::vector<Edge>& getEdges() const { return edges; }
     std::vector<Node>&       getNodes()       { return nodes; }
     const std::vector<Node>& getNodes() const { return nodes; }
-
-    // ✅ Edges аксессорлары (әзірге бос болуы мүмкін — сызу үшін жеткілікті)
-    std::vector<Edge>&             getEdges()       { return edges; }
-    const std::vector<Edge>&       getEdges() const { return edges; }
-
     int  count() const { return (int)nodes.size(); }
+    std::vector<int> ids() const;       // ✅ UI үшін
+
+    // Демонстрация үшін қарапайым ребра генерациясы
+    void rebuildRingEdges();
 };

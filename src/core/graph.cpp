@@ -1,4 +1,5 @@
 #include "graph.h"
+#include <glm/glm.hpp>
 #include <random>
 #include <cmath>
 #include <algorithm>
@@ -8,39 +9,34 @@ static std::mt19937& rng() {
     return gen;
 }
 
-// Сфера ішіндегі нүктені генерациялау (біркелкі)
+// Сфера ішіндегі нүкте (көлем бойынша біркелкі)
 static glm::vec3 randomInSphere(float R) {
     std::uniform_real_distribution<float> U(0.0f, 1.0f);
-    std::uniform_real_distribution<float> Uang(0.0f, 1.0f);
-
-    // Конус/сфера параметризациясы
     float u = U(rng());
-    float v = Uang(rng());
-    float w = Uang(rng());
+    float v = U(rng());
+    float w = U(rng());
 
-    float theta = 2.0f * 3.14159265358979323846f * v; // [0, 2pi]
-    float z = 2.0f * w - 1.0f;                         // [-1, 1]
-    float r = std::sqrt(std::max(0.0f, 1.0f - z*z));   // circle radius at z
-
-    // Көлем бойынша біркелкі таралу үшін радиус^3 ~ U
+    float theta = 2.0f * 3.14159265358979323846f * v;
+    float z = 2.0f * w - 1.0f;
+    float r = std::sqrt(std::max(0.0f, 1.0f - z*z));
     float rad = R * std::cbrt(u);
 
     return rad * glm::vec3(r*std::cos(theta), z, r*std::sin(theta));
 }
 
+// ✅ member ретінде дәл анықталады
 Node Graph::makeRandomNode() {
     Node nd{};
     nd.id  = nextId++;
     nd.pos = glm::vec3(0.0f);
     nd.vel = glm::vec3(0.0f);
     nd.roamRadius = 0.12f;
-    nd.state = NodeState::Pending; // жаңа тапсырма – Pending
+    nd.state = NodeState::Pending;
 
-    // N-ге тәуелді кеңістік радиусы (тығыздық тұрақты болсын)
     int n = std::max(1, (int)nodes.size());
-    float worldR = std::max(1.2f, 0.28f * std::cbrt((float)n)); // k * cbrt(N)
+    float worldR = std::max(1.2f, 0.28f * std::cbrt((float)n));
     nd.basePos = randomInSphere(worldR);
-    nd.pos     = nd.basePos; // бастапқыда базада тұрсын
+    nd.pos     = nd.basePos;
     return nd;
 }
 
@@ -51,12 +47,14 @@ Graph::Graph(int initialCount) {
         idIndex[nd.id] = nodes.size();
         nodes.push_back(nd);
     }
+    rebuildRingEdges();
 }
 
 int Graph::addTask() {
     Node nd = makeRandomNode();
     idIndex[nd.id] = nodes.size();
     nodes.push_back(nd);
+    rebuildRingEdges();
     return nd.id;
 }
 
@@ -69,19 +67,12 @@ bool Graph::removeTask(int id) {
 
     if (idx != last) {
         std::swap(nodes[idx], nodes[last]);
-        idIndex[nodes[idx].id] = idx; // swapped элементтің индексін жаңарту
+        idIndex[nodes[idx].id] = idx;
     }
     nodes.pop_back();
     idIndex.erase(it);
+    rebuildRingEdges();
     return true;
-}
-
-std::vector<int> Graph::ids() const {
-    std::vector<int> out;
-    out.reserve(idIndex.size());
-    for (auto& kv : idIndex) out.push_back(kv.first);
-    std::sort(out.begin(), out.end());
-    return out;
 }
 
 void Graph::setNodeState(int id, NodeState s) {
@@ -90,36 +81,48 @@ void Graph::setNodeState(int id, NodeState s) {
     nodes[it->second].state = s;
 }
 
+std::vector<int> Graph::ids() const {
+    std::vector<int> out;
+    out.reserve(nodes.size());
+    for (const auto& n : nodes) out.push_back(n.id);
+    std::sort(out.begin(), out.end());
+    return out;
+}
+
+void Graph::rebuildRingEdges() {
+    edges.clear();
+    int n = (int)nodes.size();
+    if (n < 2) return;
+    edges.reserve(n);
+    for (int i = 0; i < n; ++i) {
+        edges.push_back({ i, (i + 1) % n });
+    }
+}
+
 void Graph::update(float dt) {
     if (dt <= 0.0f) return;
 
     const int n = (int)nodes.size();
     if (n == 0) return;
 
-    // ----- Дүниенің өлшемі: N артқанда әлем радиусы өседі (сығылмасын) -----
     const float worldR = std::max(1.2f, 0.28f * std::cbrt((float)n));
-    const float B = worldR + 0.6f;        // куб қақпа шекарасы (±B)
-    const float maxSpeed = 0.7f;          // жылдамдық шегі
+    const float B = worldR + 0.6f;
+    const float maxSpeed = 0.7f;
 
-    // ----- "Шарлар" геометриясы мен минималды арақашықтық -----
-    const float nodeRadius = 0.07f;       // ⚠️ GraphRenderer-дегі радиуспен бірдей ұстаңыз
-    const float minGap     = 0.03f;       // шарлардың арасына қосымша саңылау
-    const float minDist    = 2.0f * nodeRadius + minGap;     // минималды рұқсат етілген қашықтық
+    const float nodeRadius = 0.07f;
+    const float minGap     = 0.03f;
+    const float minDist    = 2.0f * nodeRadius + minGap;
     const float minDist2   = minDist * minDist;
+    const float sepK       = 10.0f;
 
-    // Сепарация күші (жұмсақ “тығыстыру”): overlap қанша болса, сонша итереді
-    const float sepK       = 10.0f;       // тебіліс қатаңдығы (керек болса реттеңіз)
-
-    // Рандом (роуминг) және серіппе тарту параметрлері
-    const float jitterScale = 0.6f;       // кездейсоқ тербеліс амплитудасы
-    const float springNear  = 0.5f;       // радиус ішінде тарту
-    const float springFar   = 2.0f;       // радиустан тыс тарту
+    const float jitterScale = 0.6f;
+    const float springNear  = 0.5f;
+    const float springFar   = 2.0f;
 
     std::uniform_real_distribution<float> J(-1.0f, 1.0f);
 
-    // ----- 1) Жұптық сепарация күшін жиналмалы түрде есептейміз -----
+    // Жұптық сепарация жинақтағышы
     std::vector<glm::vec3> sepAcc(n, glm::vec3(0.0f));
-
     for (int i = 0; i < n; ++i) {
         for (int j = i + 1; j < n; ++j) {
             glm::vec3 d = nodes[i].pos - nodes[j].pos;
@@ -127,8 +130,7 @@ void Graph::update(float dt) {
             if (dist2 > 1e-10f && dist2 < minDist2) {
                 float dist = std::sqrt(dist2);
                 glm::vec3 dir = d / dist;
-                float overlap = (minDist - dist);      // қанша “жабысып” тұр
-                // Жұмсақ тебіліс — көбірек жабысып тұрса, көбірек итереді
+                float overlap = (minDist - dist);
                 glm::vec3 acc = dir * (sepK * overlap);
                 sepAcc[i] += acc;
                 sepAcc[j] -= acc;
@@ -136,15 +138,13 @@ void Graph::update(float dt) {
         }
     }
 
-    // ----- 2) Әр түйінге барлық күштерді (acceleration) жинап, интеграция -----
+    // Интеграция
     for (int i = 0; i < n; ++i) {
         auto& nd = nodes[i];
 
-        // Кездейсоқ “жүзу” (роуминг)
         glm::vec3 a(J(rng()), J(rng()), J(rng()));
         a *= jitterScale;
 
-        // Базалық центрге серіппелі тарту (роуминг радиусы аясында ұстау)
         glm::vec3 toC = nd.basePos - nd.pos;
         float d = glm::length(toC);
         if (d > 1e-5f) {
@@ -153,7 +153,6 @@ void Graph::update(float dt) {
             a += dir * springK;
         }
 
-        // Күйге қарай жеңіл вертикал дрейф
         switch (nd.state) {
             case NodeState::Pending: a += glm::vec3(0.f,  0.20f, 0.f); break;
             case NodeState::Done:    a += glm::vec3(0.f,  0.35f, 0.f); break;
@@ -161,20 +160,13 @@ void Graph::update(float dt) {
             default: break;
         }
 
-        // Жұптық сепарациядан келген жиналмалы күшті қосамыз
         a += sepAcc[i];
 
-        // Интеграция
         nd.vel += a * dt;
-
-        // Жылдамдықты шектеу
         float sp = glm::length(nd.vel);
         if (sp > maxSpeed) nd.vel = (nd.vel / sp) * maxSpeed;
-
-        // Позиция жаңарту
         nd.pos += nd.vel * dt;
 
-        // Глобал шекарадан шықпау (қақпалау)
         for (int ax = 0; ax < 3; ++ax) {
             float* p = (ax==0)? &nd.pos.x : (ax==1)? &nd.pos.y : &nd.pos.z;
             float* v = (ax==0)? &nd.vel.x : (ax==1)? &nd.vel.y : &nd.vel.z;
@@ -183,4 +175,3 @@ void Graph::update(float dt) {
         }
     }
 }
-

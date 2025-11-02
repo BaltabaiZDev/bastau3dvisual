@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\zhani\CLionProjects\Bastau3D\out\build\win-msvc-vcpkg-debug\CMakeFiles\f8fa06792964b98424bb6171f7506b10\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{10F6368D-5DE1-3C51-AADE-16DDD7D49ABD}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
